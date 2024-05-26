@@ -3,261 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotina de treinos</title>
+    <title>Vitrine de Produtos Digitais</title>
     <style>
-        /* Reset de estilos */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Estilos da página */
         body {
             font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #FFF;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 9px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1rem;
-        }
-
-        .content {
+            background-color: #f9f9f9;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
         }
-
-        .item {
-            width: calc(25% - 7px); /* Alterado para 33.33% */
+        .headline {
+            font-size: 24px;
             margin-bottom: 20px;
-            background-color: #333;
+            color: #333;
+            text-align: center;
+        }
+        .products {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            overflow-x: auto; /* Adicionado para permitir rolagem horizontal */
+            -webkit-overflow-scrolling: touch; /* Adicionado para melhorar a experiência de rolagem no iOS */
+            width: 117%;
+        }
+        .product {
+            position: relative; /* Adicionado para posicionamento do cadeado */
+            border: 1px solid #b900ff;
             border-radius: 5px;
-            overflow: hidden;
-            cursor: pointer; /* Adicionado para indicar que o item é clicável */
+            background-color: #fff;
+            margin: 15px;
+            padding: 10px;
+            text-align: center;
+            width: calc(50% - 40px); /* Adjusted for two items per row with gap */
+            box-shadow: 0 2px 8px rgb(0 0 0 / 70%);
+            overflow: hidden; /* Adicionado para evitar que o conteúdo ultrapasse o contêiner */
         }
-
-        .item img {
+        .product img {
             width: 100%;
-            height: auto;
-            display: block;
+            border-radius: 7px;
+            cursor: pointer;
         }
-
-        .item:hover img {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
+        .lock-icon {
+            position: absolute; /* Posicionamento absoluto dentro do contêiner relativo */
+            top: 10px; /* Ajuste conforme necessário */
+            right: 10px; /* Ajuste conforme necessário */
+            width: 30px; /* Tamanho do ícone */
+            height: 30px; /* Tamanho do ícone */
+            background: url('https://cdn-icons-png.flaticon.com/512/2089/2089795.png') no-repeat center center; /* Link da imagem do cadeado */
+            background-size: contain; /* Ajusta a imagem dentro do contêiner */
         }
-
-        .item p {
-            padding: 4px;
-            font-size: 14px;
+        .product-title {
+            font-size: 19px;
+            margin: 10px 0;
+            overflow-wrap: break-word; /* Evitar que o texto saia para fora do card */
+            text-overflow: ellipsis; /* Limitar o texto e adicionar reticências */
+            white-space: normal; /* Permitir que o texto quebre em várias linhas */
+            max-height: 3em; /* Limitar a altura do título */
+            line-height: 1.5em; /* Espaçamento entre linhas */
+            padding: 13px;
         }
-
-        /* Estilos do pop-up */
         .popup {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com transparência */
-            display: none;
+            background-color: rgba(0,0,0,0.5);
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(10px); /* Efeito de desfoque */
         }
-        #videoFrame{
-            height: 476px;
-        }
-
         .popup-content {
-            position: relative;
-            background-color: #333;
-            padding: 7px;
+            background-color: #fff;
+            padding: 20px;
             border-radius: 10px;
-            max-width: 800px; /* Largura máxima desejada */
-            width: 90%; /* Largura em percentual para ajuste responsivo */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Efeito de sombra */
-            height: 550px; /* Altura padrão */
-        }
-
-                .close {
-            position: absolute;
-            top: 16px;
-            right: 15px;
-            color: #f00;
-            cursor: pointer;
-            font-size: 4rem;
-            background: #000;
-            width: 47px;
-            height: 45px;
             text-align: center;
-            line-height: 47px;
-            border-radius: 7px;
+            width: 394px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            overflow: hidden; /* Adicionado para evitar que o conteúdo ultrapasse o contêiner */
         }
-
-        .navigation {
-            text-align: center;
-            margin-top: 10px;
+        .popup-content h2 {
+            margin-bottom: 10px;
         }
-
-        .navigation button {
-            background-color: #4CAF50; /* Green */
+        .popup-content p {
+            text-align: left;
+            margin-bottom: 20px;
+            font-family: "Garamond", serif;
+            font-size: 18px;
+            line-height: 1.5;
+            overflow-wrap: break-word; /* Evitar que o texto saia para fora do pop-up */
+        }
+        .popup-content button {
+            background-color: #28a745;
+            color: #fff;
             border: none;
-            color: white;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 10px;
+        }
+        .popup-content button:hover {
+            background-color: #218838;
+        }
+        .close-popup {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .close-popup:hover {
+            background-color: #c82333;
+        }
+        @media only screen and (min-width: 768px) {
+            .products {
+                width: 50%;
+                overflow-x: hidden; /* Remover a rolagem horizontal no desktop */
+            }
         }
 
-        /* Media query para dispositivos móveis */
-        @media screen and (max-width: 600px) {
-            .item {
-                width: calc(50% - 7px); /* Alterado para 50% */
+        /* Media Query for Mobile */
+        @media (max-width: 600px) {
+            .product {
+                width: calc(50% - 30px); /* Ajuste para dois produtos por linha no celular */
             }
-
             .popup-content {
-                height: auto; /* Altura automática para dispositivos menores */
+                width: 100%; /* Ajustar largura do popup para telas menores */
             }
-            #videoFrame {
-                height: 320px; /* Altura automática para dispositivos menores */
-            }
-
-            .navigation {
-                margin-top: 20px;
-            }
-
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Novos Desafios</h1>
-            <p>Bem-vindo: Sua jornada 💪</p>
-        </div>
-        <div class="content">
-            <div class="item" onclick="openPopup(0)">
-                <img src="https://i.postimg.cc/Fz2X43Hm/Dia-1.png" alt="Jogo 1">
-                <p>Elevação Pélvica</p>
-            </div>
-            <div class="item" onclick="openPopup(1)">
-                <img src="https://i.postimg.cc/Fz2X43Hm/Dia-1.png" alt="Jogo 2">
-                <p>Elevação 4 apoios com a perna flexionada</p>
-            </div>
-            <div class="item" onclick="openPopup(2)">
-                <img src="https://i.postimg.cc/Fz2X43Hm/Dia-1.png" alt="Jogo 3">
-                <p>Agachamento Ajoelhado</p>
-            </div>
-            <div class="item" onclick="openPopup(3)">
-                <img src="https://i.postimg.cc/Fz2X43Hm/Dia-1.png" alt="Jogo 3">
-                <p>Elevamento Pélvico com joelho flexionado</p>
-            </div>
-            <!-- Adicione mais itens conforme necessário -->
-        </div>
+
+<div class="headline">Bem-vindo à Nossa Vitrine de Produtos Digitais</div>
+
+
+<div class="products">
+    <div class="product" onclick="showPopup('Protocolo Zero barriga', 'O Protocolo Zero Barriga oferece uma coleção de receitas saborosas e deliciosas projetadas para promover a perda de gordura abdominal, sem a necessidade de se dedicar a treinos ou exercícios físicos extenuantes. Estas receitas são cuidadosamente selecionadas para fornecer os nutrientes necessários para sustentar o corpo, estimular o metabolismo e ajudar na queima de gordura, enquanto proporcionam prazer ao paladar. Com opções que vão desde smoothies energizantes até pratos principais e sobremesas irresistíveis, o protocolo torna o processo de perda de gordura mais agradável e sustentável, permitindo que você alcance seus objetivos de uma barriga mais saudável e tonificada através da alimentação.')">
+        <img src="https://assets.kiwify.com.br/fHJ2P9Q4mVQgQVT/Design-sem-nome-3_83488b0043754c94b8f080266f41abe3.png" alt="Produto 1">
+        <div class="lock-icon"></div>
+        <div class="product-title">Protocolo Zero barriga</div>
     </div>
 
-    <div class="container">
-        <div class="header">
-            <h1>Treinos 2° Dia</h1>
-            <p>Após descansar dois dias do treinos acima vamos Iniciar aqui💪</p>
-        </div>
-        <div class="content">
-            <div class="item" onclick="openPopup(4)">
-                <img src="https://i.postimg.cc/VsT8nQBT/Dia-2.png" alt="Jogo 1">
-                <p>Ponte com levantamento avançado</p>
-            </div>
-            <div class="item" onclick="openPopup(5)">
-                <img src="https://i.postimg.cc/VsT8nQBT/Dia-2.png" alt="Jogo 2">
-                <p>Agachamento Simples</p>
-            </div>
-            <div class="item" onclick="openPopup(6)">
-                <img src="https://i.postimg.cc/VsT8nQBT/Dia-2.png" alt="Jogo 3">
-                <p>Extensão de quadril com perna estendida</p>
-            </div>
-            <div class="item" onclick="openPopup(7)">
-                <img src="https://i.postimg.cc/VsT8nQBT/Dia-2.png" alt="Jogo 3">
-                <p>Agachamento com joelho flexionado</p>
-            </div>
-            <!-- Adicione mais itens conforme necessário -->
-        </div>
+    <div class="product" onclick="showPopup('Eliminando A Celulite Em 28 Dias', 'Eliminando a Celulite em 28 Dias é um programa abrangente e eficaz projetado para ajudar a reduzir e eliminar a celulite em um período relativamente curto. Ao longo de quatro semanas, os participantes são guiados por uma combinação de exercícios direcionados, técnicas de massagem específicas e um plano de alimentação balanceada. Os exercícios visam tonificar os músculos e aumentar a circulação sanguínea, enquanto as técnicas de massagem ajudam a quebrar os depósitos de gordura e melhorar a textura da pele. Complementarmente, o plano de alimentação é rico em nutrientes e antioxidantes, promovendo não apenas a redução da celulite, mas também uma pele mais saudável e uma sensação geral de bem-estar. Este programa oferece uma abordagem holística e comprovada para alcançar uma pele mais suave, tonificada e livre da celulite em um período de 28 dias.')">
+        <img src="https://assets.kiwify.com.br/fHJ2P9Q4mVQgQVT/300x300_db09cf0c10544bbeb8c7a0acd531993a.png" alt="Produto 2">
+        <div class="lock-icon"></div>
+        <div class="product-title">Eliminando A Celulite Em 28 Dias</div>
     </div>
+    <!-- Adicione mais produtos aqui -->
+</div>
 
-    <!-- Pop-up -->
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <iframe id="videoFrame" width="100%" height="315" src="" frameborder="0" allowfullscreen controls="false" allow="autoplay" style="border-radius: 10px;"></iframe>
-            <div class="navigation">
-                <button onclick="previousVideo()">Anterior</button>
-                <button onclick="nextVideo()">Próximo</button>
-            </div>
-        </div>
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closePopup()">X</button>
+        <h2 id="popup-title"></h2>
+        <p id="popup-description"></p>
+        <button id="buyButton">LIBERAR ACESSO AGORA</button> <!-- Botão de compra -->
     </div>
+</div>
 
-    <script>
-        var videos = [
-            'https://drive.google.com/file/d/1_bU9YbQJSJoT46EqkQ8xytlrkntGVI9q/preview',
-            'https://drive.google.com/file/d/1-y4luB-CfykSn_LnRQVfT6ehe9LLe8-m/preview',
-            'https://drive.google.com/file/d/12-NDKtY3DwH5Ka5iRKUO-dl9nQb3TMGO/preview',
-            'https://drive.google.com/file/d/1CrPaJi4qU41MZ88W3zXdFbHksid6jozp/preview',
-            //parte-2
-            'https://drive.google.com/file/d/1gS7H4itsKX8L2l3Ok3oJ7r26gD3z70gM/preview',
-            'https://drive.google.com/file/d/1HHNy-bwXjRQi5INz7XszTe7HLCDJXX0k/preview',
-            'https://drive.google.com/file/d/1hDMzdnr-tfkyL1FrJs0E-UKKx3aAF-NS/preview',
-            'https://drive.google.com/file/d/1YhtgpD2Hm5RGhuWkB6SprUwohFtfY5B3/preview'
+<script>
+    function showPopup(title, description) {
+        document.getElementById('popup-title').textContent = title;
+        document.getElementById('popup-description').textContent = description;
+        document.getElementById('popup').style.display = 'flex';
+    }
 
-        ];
-        var currentVideoIndex = 0;
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
 
-        function openPopup(videoIndex) {
-            var popup = document.getElementById('popup');
-            var videoFrame = document.getElementById('videoFrame');
-            currentVideoIndex = videoIndex;
-            videoFrame.src = videos[currentVideoIndex];
-            popup.style.display = 'flex';
+    // Definindo o comportamento do botão de compra com base no título do produto
+    document.getElementById('buyButton').onclick = function() {
+        var title = document.getElementById('popup-title').textContent;
+        if (title === 'Protocolo Zero barriga') {
+            // Redireciona para o Google se for o Produto 1
+            window.location.href = 'https://pay.kiwify.com.br/cQSl3Am?utm_souce=area-de-membros';
+        
+        } else if (title === 'Eliminando A Celulite Em 28 Dias') {
+            // Redireciona para o Facebook se for o Produto 2
+            window.location.href = 'https://pay.kiwify.com.br/sdycMoj?utm_souce=area-de-membros';
         }
-
-        function closePopup() {
-            var popup = document.getElementById('popup');
-            var videoFrame = document.getElementById('videoFrame');
-            videoFrame.src = '';
-            popup.style.display = 'none';
-        }
-
-        function previousVideo() {
-            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-            var videoFrame = document.getElementById('videoFrame');
-            videoFrame.src = videos[currentVideoIndex];
-        }
-
-        function nextVideo() {
-            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            var videoFrame = document.getElementById('videoFrame');
-            videoFrame.src = videos[currentVideoIndex];
-        }
-    </script>
+    };
+</script>
 </body>
 </html>
