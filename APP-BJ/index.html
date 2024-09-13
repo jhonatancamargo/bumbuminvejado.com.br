@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area de Menbros Bumbum Invejado</title>
+    <title>Área de Membros Bumbum Invejado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Estilos aqui */
@@ -12,35 +12,31 @@
             margin: 0;
             padding: 0;
         }
-        
 
         header {
             background-color: #333;
             color: #fff;
-            padding: 10px;
+            padding: 13px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .close {
-            font-size: 35px;
-            padding: 97%;
-        }
         .logo-title {
             display: flex;
             align-items: center;
+            width: 62%;
         }
         .logo-title h1 {
-            font-size: 20px;
+            font-size: 19px;
             font-family: serif;
             margin-left: 10px;
         }
         header img {
-            width: 90px;
+            width: 60px;
             margin-right: 10px;
         }
         .user-info {
-            margin-right: -24px;
+            margin-right: 3px;
             display: flex;
             align-items: center;
         }
@@ -50,8 +46,8 @@
                 margin-top: 0px;
             }
             .modal-content {
-                margin: 10% auto; /* Alterado de 13% para 10% */
-                max-width: 80%; /* Alterado para melhor ajuste em telas maiores */
+                margin: 10% auto; 
+                max-width: 80%; 
             }
         }
         .user-info span {
@@ -97,7 +93,7 @@
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 10% auto; /* Alterado de 50% para 10% */
+            margin: 10% auto; 
             padding: 40px;
             border-radius: 10px;
             border: 1px solid #888;
@@ -106,12 +102,6 @@
             z-index: 1;
             left: 0;
             top: 0;
-        }
-        .obscured {
-            font-family: monospace;
-            color: transparent;
-            text-shadow: 0 0 0 #000;
-            border-radius: 6px;
         }
         @media screen and (max-width: 768px) {
             .user-info {
@@ -144,15 +134,13 @@
 
     <!-- Modal -->
     <div id="myModal" class="modal">
-        <!-- Conteúdo do modal -->
         <div class="modal-content">
-            <!-- Botão de fechar removido -->
-            <h2 style="text-align: center; color: #333;">Entre com seu email e senha</h2>
-            <form onsubmit="fecharModal(); return verificarCredenciais()">
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" class="obscured" style="width: 100%; padding: 8px; margin-bottom: 10px;" required><br>
+            <h2 style="text-align: center; color: #333;">Entre com seu nome de usuário e senha</h2>
+            <form onsubmit="return verificarCredenciais()">
+                <label for="email">Nome de usuário:</label><br>
+                <input type="text" id="email" name="email" style="width: 100%; padding: 8px; margin-bottom: 10px;" required><br>
                 <label for="senha">Senha:</label><br>
-                <input type="password" id="senha" name="senha" class="obscured" style="width: 100%; padding: 8px; margin-bottom: 10px;" required><br><br>
+                <input type="password" id="senha" name="senha" style="width: 100%; padding: 8px; margin-bottom: 10px;" required><br><br>
                 <button type="submit" style="background-color: #333; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">Entrar</button>
             </form>
             <div id="error-message" class="error-message" style="display: none;"></div>
@@ -177,374 +165,103 @@
     </div>
 
     <script>
-        var usuarios = [
-            { nome: "Jhonatana Camargo", email: "jhonatanacamargo2020@gmail.com", senha: "Fr19256920," },
-            { nome: "Usuário 2", email: "Chalitasamra@gmail.com", senha: "samra" },
-            { nome: "Usuário 3", email: "usuario3@example.com", senha: "senha3" },
+    var senhaCorreta = "123";  // Senha fixa
 
-  { "nome": "Carla Danielly", "email": "daniellycarla29@gmail.com", "senha": "Carla," },
-  { "nome": "Valdemeire da", "email": "meirysilva2706@gmail.com", "senha": "Valdemeire," },
-  { "nome": "Kátia Maria", "email": "katiamariagomes75@gmail.com", "senha": "Kátia," },
-  { "nome": "Adriana Cristina", "email": "adrianacardoso2220@gmail.com", "senha": "Adriana," },
-  { "nome": "Marineide Silva", "email": "marineidesilvabispo@gmail.com", "senha": "Marineide," },
-  { "nome": "Rosana Chalita", "email": "chalitasamra@gmail.com", "senha": "Rosana," },
-  { "nome": "Rosentina Santos", "email": "rosentinacastro@hotmail.com", "senha": "Rosentina," },
-  { "nome": "Ana Lúcia", "email": "luciacorretora4@gmail.com", "senha": "Ana," },
-  { "nome": "Erenice de", "email": "erenicelima.el@gmail.com", "senha": "Erenice," },
-  { "nome": "JHONATAN", "email": "jhonatana@hotmail.com", "senha": "JHONATAN," },
-  { "nome": "Flávia De", "email": "letc.145@gmail.com", "senha": "Flávia," },
-  { "nome": "Roseli Almeida", "email": "rose.danrope@gmail.com", "senha": "Roseli," },
-  { "nome": "Ediana Santos", "email": "diana.2135@hotmail.com", "senha": "Ediana," },
-  { "nome": "Eloisa Helena", "email": "realmimos.lanchonete@gmail.com", "senha": "Eloisa," },
-  { "nome": "Solange Renata", "email": "solrenata2017@gmail.com", "senha": "Solange," },
-  { "nome": "Eliete Gomes", "email": "elietegpaiva@gmail.com", "senha": "Eliete," },
-  { "nome": "Alessandra Patrícia", "email": "alepatricia72@gmail.com", "senha": "Alessandra," },
-  { "nome": "Valcinara Macedo", "email": "cinaranaildesigner@gmail.com", "senha": "Valcinara," },
-  { "nome": "EvaniaAntoniadeOliveiraAlencar", "email": "evaniaa475@gmail.com", "senha": "EvaniaAntoniadeOliveiraAlencar," },
-  { "nome": "Silvia Pereira", "email": "s2024luzia@gmail.com", "senha": "Silvia," },
-  { "nome": "Margarete moreira", "email": "margaretemoreirafarias1974@gmail.com", "senha": "Margarete," },
-  { "nome": "Valdenice soares", "email": "waldenicesillva@gmail.com", "senha": "Valdenice," },
-  { "nome": "Silvana Ramon", "email": "silvanaramon125@gmail.com", "senha": "Silvana," },
-  { "nome": "Andresa valente", "email": "andresavalente91@gmail.com", "senha": "Andresa," },
-  { "nome": "Andreia Batista", "email": "adreia.batista@gmail.com", "senha": "Andreia," },
-  { "nome": "Andréia Batista", "email": "adreia.batista@gmail.com", "senha": "Andréia," },
-  { "nome": "Joice Iara", "email": "joicearaujorevenda@gmail.com", "senha": "Joice," },
-  { "nome": "Maria Silva", "email": "mariasilva87113@gmail.com", "senha": "Maria," },
-  { "nome": "Antônia Alves", "email": "aalveoliveira705@gmail.com", "senha": "Antônia," },
-  { "nome": "Soneli da", "email": "sonelicloth@gmail.com", "senha": "Soneli," },
-  { "nome": "Tatiana Andrade", "email": "tatianaandrade318@gmail.com", "senha": "Tatiana," },
-  { "nome": "Lucimari Pereira", "email": "lucimaripereirarocha@gmail.com", "senha": "Lucimari," },
-  { "nome": "Claudia Baldoino", "email": "claudiabaldoino2334@gmail.com", "senha": "Claudia," },
-  { "nome": "Jurema conceição", "email": "juremadasilva6605@gmail.com", "senha": "Jurema," },
-  { "nome": "Marta Marilene", "email": "martagabrieldiogo@icloud.com", "senha": "Marta," },
-  { "nome": "Maria de", "email": "marialisboa@gmail.com", "senha": "Maria," },
-  { "nome": "Márcia REGINA", "email": "marciarprpantera@gmail.com", "senha": "Márcia," },
-  { "nome": "Márcia REGINA", "email": "mrpr@pantera.com.br", "senha": "Márcia," },
-  { "nome": "Eduiges aguiar", "email": "eduigesaguiar01@gmail.com", "senha": "Eduiges," },
-  { "nome": "Antônia Maria", "email": "antoniamariasantosdasilva386@gmail.com", "senha": "Antônia," },
-  { "nome": "María Angela", "email": "angelamesquita70@gmail.com", "senha": "María," },
-  { "nome": "Claudia Gebien", "email": "claudiagb1990@gmail.com", "senha": "Claudia," },
-  { "nome": "Ana Cláudia", "email": "anaclsantos1@hotmail.com", "senha": "Ana," },
-  { "nome": "Luciana Dos", "email": "lucianasandosmsd206@gmail.com", "senha": "Luciana," },
-  { "nome": "Patrícia Cordeiro", "email": "parikocordeiro77@hotmail.com", "senha": "Patrícia," },
-  { "nome": "Severina Bernardo", "email": "anita-bernardo@hotmail.com", "senha": "Severina," },
-  { "nome": "Luciene Neves", "email": "cienemonteiro17@gmail.com", "senha": "Luciene," },
-  { "nome": "Ana Paula", "email": "paulacantora2014@gmail.com", "senha": "Ana," },
-  { "nome": "Sônia Aparecida", "email": "soniaapmace2021@gmail.com", "senha": "Sônia," },
-  { "nome": "Geiziane Peres", "email": "geiziane.peres83@gmail.com", "senha": "Geiziane," },
-  { "nome": "Vanusa Mamede", "email": "vanusamamede23@gmail.com", "senha": "Vanusa," },
-  { "nome": "Telma", "email": "telmabraga@outlook.com", "senha": "Telma," },
-  { "nome": "Cassia", "email": "mcassiafer@gmail.com", "senha": "Cassia," },
-  { "nome": "Joilda Pereira", "email": "pereirajoilda1@gmail.com", "senha": "Joilda," },
-  { "nome": "Ana Maria", "email": "ana_benevenuto75@hotmail.com", "senha": "Ana," },
-  { "nome": "Alcinete Batista", "email": "araujoalcinete104@gm.com", "senha": "Alcinete," },
-  { "nome": "Vanil Queiroz", "email": "vanilmelo20@gmail.com", "senha": "Vanil," },
-  { "nome": "ELIANE SOUZA", "email": "elianelucca1309@gmail.com", "senha": "ELIANE," },
-  { "nome": "Rosana Teodoro", "email": "rosana_teodoro@icloud.com", "senha": "Rosana," },
-  { "nome": "Valquiria Alves", "email": "kiirabitencourt@gmail.com", "senha": "Valquiria," },
-  { "nome": "Anita Moreira", "email": "anitamds2017@gmail.com", "senha": "Anita," },
-  { "nome": "Luciene Silva", "email": "lucienesilva19899@gmail.com", "senha": "Luciene," },
-  { "nome": "Elisângela dos", "email": "elisangeladossantos026@gmail.com", "senha": "Elisângela," },
-  { "nome": "Francisca da", "email": "cri.iguatu@hotmail.com", "senha": "Francisca," },
-  { "nome": "Claudinea do", "email": "claudiasantana8851@gmail.com", "senha": "Claudinea," },
-  { "nome": "Karla Machado", "email": "km2405880@gmail.com", "senha": "Karla," },
-  { "nome": "Francisca Maria", "email": "thesca.maguiar@gmail.com", "senha": "Francisca," },
-  { "nome": "Saory", "email": "saory.rocha@gmail.com", "senha": "Saory," },
-  { "nome": "Maria", "email": "duasmocinhas@gmail.com", "senha": "Maria," },
-  { "nome": "Maria da", "email": "jhonatanacamargo2020@gmail.com", "senha": "Maria," },
-  { "nome": "Gerson de", "email": "gersonpleao@gmail.com", "senha": "Gerson," },
-  { "nome": "Gizelda da", "email": "giseldamoura139@gmail.com", "senha": "Gizelda," },
-  { "nome": "Rosilene Moura", "email": "rosilenemoura860@gmail.com", "senha": "Rosilene," },
-  { "nome": "Samara Da", "email": "contabilidade.2017@outlook.com", "senha": "Samara," },
-  { "nome": "Daniele Alves", "email": "diasdanielealves@gmail.com", "senha": "Daniele," },
-  { "nome": "Mariete Barbosa", "email": "marietebarbosa04@gmail.com", "senha": "Mariete," },
-  { "nome": "Silviene Francelino", "email": "silvi_ene@hotmail.com", "senha": "Silviene," },
-  { "nome": "Simone Pereira", "email": "simonepereiradossantos45835@gmail.com", "senha": "Simone," },
-  { "nome": "Simone Pereira", "email": "Simonepereiradossantos45835@gmail.com", "senha": "Simone," },
-  { "nome": "Luci Aparecida", "email": "luci.aparecidaa122@gmail.com", "senha": "Luci," },
-  { "nome": "Roseane pereira", "email": "roseanepereiradeoliveira542@gmail.com", "senha": "Roseane," },
-  { "nome": "Rakabia dos", "email": "Oziel.venda@hotmail.com", "senha": "Rakabia," },
-  { "nome": "Ana Carolina", "email": "anacarolinajb2004@gmail.com", "senha": "Ana," },
-  { "nome": "Sueli ferreira", "email": "suelisoares.sssf@gmail.com", "senha": "Sueli," },
-  { "nome": "Izailda Maria", "email": "izailda.ferreira@hotmail.com", "senha": "Izailda," },
-  { "nome": "Suzeti oliveira", "email": "suzimara44@live.com", "senha": "Suzeti," },
-  { "nome": "Giuliana Ratz", "email": "giuratz13@gmail.com", "senha": "Giuliana," },
-  { "nome": "Edileusa da", "email": "edileuza.souza79@gmail.com", "senha": "Edileusa," },
-  { "nome": "Maria Clesiana", "email": "clesiana2007@hotmail.com", "senha": "Maria," },
-  { "nome": "Clesia Pereira", "email": "clesiapereira61@gmail.com", "senha": "Clesia," },
-  { "nome": "Márcia Guimaraes", "email": "marciaguimaraes.1979@outlook.com", "senha": "Márcia," },
-  { "nome": "Andréa Elisângela", "email": "andrea.engelmann6@gmail.com", "senha": "Andréa," },
-  { "nome": "Vilma Aparecida", "email": "Vilma.souzatb@gmail.com", "senha": "Vilma," },
-  { "nome": "Ana Raquel", "email": "anaraquelsantos548@gmail.com", "senha": "Ana," },
-  { "nome": "Ana Lucia", "email": "analuciabspereiras6@gmail.com", "senha": "Ana," },
-  { "nome": "Luciene lopes", "email": "Tatiane80ingrid@gmail.com", "senha": "Luciene," },
-  { "nome": "Valdilene de", "email": "prof.valdilenemacedo@gmail.com", "senha": "Valdilene," },
-  { "nome": "Gildasio Miranda", "email": "pereiragildasio72@gmail.com", "senha": "Gildasio," },
-  { "nome": "Gildásio Pereira", "email": "pereiragildasio72@gmail.com", "senha": "Gildásio," },
-  { "nome": "Gildasio Pereira", "email": "pereiragildasio72@gmail.com", "senha": "Gildasio," },
-  { "nome": "Annaclaragalvao", "email": "Annaclaragalvao753@gmail.com", "senha": "Annaclaragalvao," },
-  { "nome": "AnnaClara Galvão", "email": "Annaclaragalvao753@gmail.com", "senha": "AnnaClara," },
-  { "nome": "Lusineide Mendes", "email": "lusineidemendessilva@gmail.com", "senha": "Lusineide," },
-  { "nome": "Keren Camilly", "email": "Kcanavarolli@gmail.com", "senha": "Keren," },
-  { "nome": "Giovana da", "email": "gigi.moro03@gmail.com", "senha": "Giovana," },
-  { "nome": "Maria Eduarda", "email": "julienesantospereira72@gmail.com", "senha": "Maria," },
-  { "nome": "Maria Eduarda", "email": "julienesantospereira72@gmail.com", "senha": "Maria," },
-  { "nome": "Eliane Araújo", "email": "licaguimaraes1996@gmail.com", "senha": "Eliane," },
-  { "nome": "Ana Júlia", "email": "anajuliareboucasbarbosa@gmail.com", "senha": "Ana," },
-  { "nome": "Samara Cristina", "email": "sah_cas018@outlook.com", "senha": "Samara," },
-  { "nome": "Jenifer Rodrigues", "email": "Jeniferrodriguesmakeup@outlook.com", "senha": "Jenifer," },
-  { "nome": "Thacyane Oliveira", "email": "thacyoliveira12@gmail.com", "senha": "Thacyane," },
-  { "nome": "Julieide Ananias", "email": "julieidesilva@gmail.com", "senha": "Julieide," },
-  { "nome": "Laila Regina", "email": "lailaregina2512@gmail.com", "senha": "Laila," },
-  { "nome": "Avinete Rodrigues", "email": "rodriguesthyendra@gmail.com", "senha": "Avinete," },
-  { "nome": "Teomare Luz", "email": "teomareluz07@gmail.com", "senha": "Teomare," },
-  { "nome": "Francilene da", "email": "Nayf_27@hotmail.Com", "senha": "Francilene," },
-  { "nome": "Nadja de", "email": "nadjaaraujo772@gmail.com", "senha": "Nadja," },
-  { "nome": "Patrícia Silva", "email": "patriciasilvasantos1408@gmail.com", "senha": "Patrícia," },
-  { "nome": "Lucileide Abreu", "email": "leideabreu.costa@gmail.com", "senha": "Lucileide," },
-  { "nome": "Conceição de", "email": "nena46693@hotimail.com", "senha": "Conceição," },
-  { "nome": "Conceicao de", "email": "nena46693@hotimail.com", "senha": "Conceicao," },
-  { "nome": "Jandira Dos", "email": "jandiraaquino8202@gmail.com", "senha": "Jandira," },
-  { "nome": "Valziane S", "email": "annysantos8380@gmail.com", "senha": "Valziane," },
-  { "nome": "Elenir Carlos", "email": "elenircarlos1@gmail.com", "senha": "Elenir," },
-  { "nome": "Simone franco", "email": "simonesilveira950@gmail.com", "senha": "Simone," },
-  { "nome": "Amelia rosales", "email": "Amely_zeus@hotmail.com", "senha": "Amelia," },
-  { "nome": "María Beatriz", "email": "blbarcelos@hotmail.com", "senha": "María," },
-  { "nome": "Macirlane Pinto", "email": "santosmacirlane@gmail.com", "senha": "Macirlane," },
-  { "nome": "Taiane da", "email": "taidarosa99@gmail.com", "senha": "Taiane," },
-  { "nome": "Bianca Nunes", "email": "Bianca28604@gmail.com", "senha": "Bianca," },
-  { "nome": "Maria Gizelle", "email": "gs434339@gmail.com", "senha": "Maria," },
-  { "nome": "Rosimeire Santos", "email": "rs528710@gmail.com", "senha": "Rosimeire," },
-  { "nome": "Daniele cristina", "email": "Cristinadaniele579@gmail.com", "senha": "Daniele," },
-  { "nome": "Carla Alves", "email": "carlaalvesdias80@gmail.com", "senha": "Carla," },
-  { "nome": "Valziane Cardoso", "email": "annysantos8380@gmail.com", "senha": "Valziane," },
-  { "nome": "Thais Silva", "email": "thaisfabThais Silva", "email": "thaissilva301@gmail.com", "senha": "Thais," },
-  { "nome": "Joseane das", "email": "joseaneconsorcios2020@gmail.com", "senha": "Joseane," },
-  { "nome": "Jenifer Aparecida", "email": "jeh.da@outlook.com", "senha": "Jenifer," },
-  { "nome": "Karina Costa", "email": "karina.kacosta@gmail.com", "senha": "Karina," },
-  { "nome": "Andrea Lino", "email": "linoandrea86@gmail.com", "senha": "Andrea," },
-  { "nome": "Adriana Gomes", "email": "adriana1603silva@gmail.com", "senha": "Adriana," },
-  { "nome": "Luciene Luz", "email": "lucienealvesdaguiar@gmail.com", "senha": "Luciene," },
-  { "nome": "Laira da", "email": "vadulcepaula13@gmail.com", "senha": "Laira," },
-  { "nome": "Roneide Maria", "email": "roneidemaria15@gmail.com", "senha": "Roneide," },
-  { "nome": "Regiane de", "email": "regianeguedesbrito@gmail.com", "senha": "Regiane," },
-  { "nome": "Daniela Pereira", "email": "daniela-sr@outlook.com", "senha": "Daniela," },
-  { "nome": "Núbia Cristina", "email": "nubiabandeira3@gmail.com", "senha": "Núbia," },
-  { "nome": "Isabel Cristina", "email": "isacristina20.ic@gmail.com", "senha": "Isabel," },
-  { "nome": "Maria das", "email": "thaislaine17@gmail.com", "senha": "Maria," },
-  { "nome": "Sandra Cristina", "email": "sandrinhacristina.23@hotmail.com", "senha": "Sandra," },
-  { "nome": "Marta Maria", "email": "marta.trabalho@yahoo.com", "senha": "Marta," },
-  { "nome": "Iara da", "email": "iarahonorato98@gmail.com", "senha": "Iara," },
-  { "nome": "Gilvaneide Gomes", "email": "gilvaneide_45@hotmail.com", "senha": "Gilvaneide," },
-  { "nome": "Ana Lúcia", "email": "analuciacosta09@gmail.com", "senha": "Ana," },
-  { "nome": "Luiza Andrade", "email": "luizaandrade596@gmail.com", "senha": "Luiza," },
-  { "nome": "Jucelene Santana", "email": "jucelenesantana311@gmail.com", "senha": "Jucelene," },
-  { "nome": "Sandra Maria", "email": "sandra_mariafernandessilva@hotmail.com", "senha": "Sandra," },
-  { "nome": "Erika Maria", "email": "erikadecassia2014@hotmail.com", "senha": "Erika," },
-  { "nome": "Ana Paula", "email": "Anaestevesavon2014@gmail.com", "senha": "Ana," },
-  { "nome": "Kelliane Cristina", "email": "kellianecristina15@gmail.com", "senha": "Kelliane," },
-  { "nome": "Renata Maria", "email": "renatamariaribeiro34@gmail.com", "senha": "Renata," },
-  { "nome": "Cilene de", "email": "cilenegoncalves@outlook.com", "senha": "Cilene," },
-  { "nome": "Luciana Lopes", "email": "mendesluciana352@gmail.com", "senha": "Luciana," },
-  { "nome": "Luciana Lopes", "email": "luciana_magalhaes35@yahoo.com.br", "senha": "Luciana," },
-  { "nome": "Andressa Santos", "email": "andressasantos2103@gmail.com", "senha": "Andressa," },
-  { "nome": "Denise Pereira", "email": "denisekelly42@gmail.com", "senha": "Denise," },
-  { "nome": "Crislaine Ribeiro", "email": "crislaine.marykay28@gmail.com", "senha": "Crislaine," },
-  { "nome": "Erenice Maria", "email": "Santosere.pfs@gmail.com", "senha": "Erenice," },
-  { "nome": "Maria Eduarda", "email": "duda_assis_10@hotmail.com", "senha": "Maria," },
-  { "nome": "Rosilene Lopes", "email": "rosilenelopes92@gmail.com", "senha": "Rosilene," },
-  { "nome": "Ana Paula", "email": "futuragenerosasp2018@gmail.com", "senha": "Ana," },
-  { "nome": "Valéria Maria", "email": "valeriamariafernandes1973@hotmail.com", "senha": "Valéria," },
-  { "nome": "Maria Aparecida", "email": "mariaaparecidaaltair@hotmail.com", "senha": "Maria," },
-  { "nome": "Sueli Oliveira", "email": "suelis.oliveira@bol.com.br", "senha": "Sueli," },
-  { "nome": "Raiane Soares", "email": "raianesoares95@hotmail.com", "senha": "Raiane," },
-  { "nome": "Eliza de", "email": "Eliza_loirinha@hotmail.com", "senha": "Eliza," },
-  { "nome": "Maria Aparecida", "email": "elizatecnico@hotmail.com", "senha": "Maria," },
-  { "nome": "Kellyane Maria", "email": "kellyanemaria22@gmail.com", "senha": "Kellyane," },
-  { "nome": "Lorena Maria", "email": "lorenamariaalves2008@gmail.com", "senha": "Lorena," },
-  { "nome": "Maria Ester", "email": "esthegabi1@gmail.com", "senha": "Maria," },
-  { "nome": "Valmira Pereira", "email": "valmirapereira164@gmail.com", "senha": "Valmira," },
-  { "nome": "Tania Maria", "email": "tanialuisel@outlook.com", "senha": "Tania," },
-  { "nome": "Viviane Oliveira", "email": "vivioliveira_2010@hotmail.com", "senha": "Viviane," },
-  { "nome": "Aline Silva", "email": "alinesilvasantos106@gmail.com", "senha": "Aline," },
-  { "nome": "Adriana Lima", "email": "Adrianalima3900@gmail.com", "senha": "Adriana," },
-  { "nome": "Neuraci Maria", "email": "mariawaf2008@hotmail.com", "senha": "Neuraci," },
-  { "nome": "Josefa Ferreira", "email": "josy_ferrei@hotmail.com", "senha": "Josefa," },
-  { "nome": "Josenilda de", "email": "joseonildacg@gmail.com", "senha": "Josenilda," },
-  { "nome": "Aldenice Maria", "email": "santos.aldenice@gmail.com", "senha": "Aldenice," },
-  { "nome": "Ana Maria", "email": "anamariamaggi@live.com", "senha": "Ana," },
-  { "nome": "Sônia Maria", "email": "sli1974@gmail.com", "senha": "Sônia," },
-  { "nome": "Maria Lucia", "email": "marilucia.dejesus@gmail.com", "senha": "Maria," },
-  { "nome": "Maria das", "email": "junamoura1@hotmail.com", "senha": "Maria," },
-  { "nome": "Cida Maria", "email": "cidamariasilva40@hotmail.com", "senha": "Cida," },
-  { "nome": "Maria da", "email": "jcmaia1994@hotmail.com", "senha": "Maria," },
-  { "nome": "Francisca Valdivia", "email": "Francisca.valdivia@hotmail.com", "senha": "Francisca," },
-  { "nome": "Katia Regina", "email": "Katiaregina-rs@hotmail.com", "senha": "Katia," },
-  { "nome": "Solange Maria", "email": "tettinha-af@hotmail.com", "senha": "Solange," },
-  { "nome": "Elaine Cristina", "email": "elaine-cristina49@hotmail.com", "senha": "Elaine," },
-  { "nome": "Joao Vicente", "email": "Xonecascooby@hotmail.com", "senha": "Joao," },
-  { "nome": "Antonia Conceição", "email": "antoniaconceicao123@gmail.com", "senha": "Antonia," },
-  { "nome": "Juliana Cristina", "email": "juhzinhavet@hotmail.com", "senha": "Juliana," },
-  { "nome": "Rita de", "email": "ritadeborges@hotmail.com", "senha": "Rita," },
-  { "nome": "Elzinha Maria", "email": "elzinhacordeiro@outlook.com", "senha": "Elzinha," },
-  { "nome": "Luzia maria", "email": "luziamaragiamp@hotmail.com", "senha": "Luzia," },
-  { "nome": "Fabiana Maria", "email": "fasanta_2020@hotmail.com", "senha": "Fabiana," },
-  { "nome": "Daianny Maria", "email": "daiannymarcelino@yahoo.com.br", "senha": "Daianny," },
-  { "nome": "Ana Paula", "email": "anapaulaferreiratiag@gmail.com", "senha": "Ana," },
-  { "nome": "Zulene Maria", "email": "zulenedias@hotmail.com", "senha": "Zulene," },
-  { "nome": "Aparecida Nunes", "email": "cidanunes07@gmail.com", "senha": "Aparecida," },
-  { "nome": "Rosemeire Maria", "email": "rosemarieok@yahoo.com.br", "senha": "Rosemeire," },
-  { "nome": "Alessandra Cristina", "email": "alecris.macedo@gmail.com", "senha": "Alessandra," },
-  { "nome": "Vanderleia Maria", "email": "leiaflorata@outlook.com", "senha": "Vanderleia," },
-  { "nome": "Alzira Maria", "email": "Alziramcunha11@gmail.com", "senha": "Alzira," },
-  { "nome": "Maria de", "email": "betha.bh2015@gmail.com", "senha": "Maria," },
-  { "nome": "Maria de", "email": "mariapcristina79@gmail.com", "senha": "Maria," },
-  { "nome": "Neuza Maria", "email": "alvesneuza1958@gmail.com", "senha": "Neuza," },
-  { "nome": "Daniela Cristina", "email": "danielagcristina@yahoo.com.br", "senha": "Daniela," },
-  { "nome": "Vania Maria", "email": "vaniadeoliveira29@gmail.com", "senha": "Vania," },
-  { "nome": "Edileusa Maria", "email": "edileusasantos1974@hotmail.com", "senha": "Edileusa," },
-  { "nome": "Maria Eduarda", "email": "maria.duarte8907@gmail.com", "senha": "Maria," },
-  { "nome": "Cidinha Maria", "email": "cidinhapereira07@hotmail.com", "senha": "Cidinha," },
-  { "nome": "Elza Maria", "email": "elsluz@uol.com.br", "senha": "Elza," },
-  { "nome": "Vilma Maria", "email": "vilmamaria.juliao@yahoo.com.br", "senha": "Vilma," },
-  { "nome": "Elizete Maria", "email": "elizetemaline@hotmail.com", "senha": "Elizete," },
-  { "nome": "Joelma Maria", "email": "Jomarias02@gmail.com", "senha": "Joelma," },
-  { "nome": "Francisca das", "email": "tutifrancisca@gmail.com", "senha": "Francisca," },
-  { "nome": "Roseneide Maria", "email": "roseneidemaria@yahoo.com.br", "senha": "Roseneide," },
-  { "nome": "Sônia Regina", "email": "soniarcampos@yahoo.com.br", "senha": "Sônia," },
-  { "nome": "Eliane Maria", "email": "eliane.pintelopes@hotmail.com", "senha": "Eliane," },
-  { "nome": "Ana Karla", "email": "anakarlalima2011@hotmail.com", "senha": "Ana," },
-  { "nome": "Maria do", "email": "leticianatacha1205@gmail.com", "senha": "Maria," },
-  { "nome": "Daniela Lima", "email": "danielalimaalemao@gmail.com", "senha": "Daniela," },
-  { "nome": "Maria de", "email": "cassiaceciliasantos@gmail.com", "senha": "Maria," },
-  { "nome": "Maria do", "email": "cyntia_monteiro_oliveira@hotmail.com", "senha": "Maria," },
-  { "nome": "Elisângela Maria", "email": "elisangelamaria81@hotmail.com", "senha": "Elisângela," },
-  { "nome": "Eva Maria", "email": "emariasousa62@hotmail.com", "senha": "Eva," },
-  { "nome": "Regina Maria", "email": "reginamartins10@gmail.com", "senha": "Regina," },
-  { "nome": "Roseli Maria", "email": "roselipereiradasilva@hotmail.com", "senha": "Roseli," },
-  { "nome": "Tereza Maria", "email": "tereza.ceara@hotmail.com", "senha": "Tereza," },
-  { "nome": "Naiara Maria", "email": "naiarasantos405@gmail.com", "senha": "Naiara," },
-  { "nome": "Adriele Cristina", "email": "adriele_morais_martins@outlook.com", "senha": "Adriele," },
-  { "nome": "Elisangela de", "email": "zildemacedo58@gmail.com", "senha": "Elisangela," },
-  { "nome": "Celia Maria", "email": "celiama365@gmail.com", "senha": "Celia," },
-  { "nome": "Maria do", "email": "marialuciaamaro47@gmail.com", "senha": "Maria," },
-  { "nome": "Adriana de", "email": "Adriana_reboucas@outlook.com", "senha": "Adriana," },
-  { "nome": "Adriana Cristina", "email": "adrianadecarvalhocordeiro@gmail.com", "senha": "Adriana," },
-  { "nome": "Maria de", "email": "nataliasilvapereira09@gmail.com", "senha": "Maria," },
-  { "nome": "Maria do", "email": "anabeatrizppaula18@gmail.com", "senha": "Maria," },
-  { "nome": "Ana Flávia", "email": "anadfsilva@gmail.com", "senha": "Ana," },
-  { "nome": "Ana Paula", "email": "anapaulaportellasilva@hotmail.com", "senha": "Ana," },
-  { "nome": "Maria do", "email": "cleidiane.rosa@live.com", "senha": "Maria," },
-  { "nome": "Maria Lúcia", "email": "mvlucia24@gmail.com", "senha": "Maria," },
-  { "nome": "Marilene Maria", "email": "lucas_lucelia@hotmail.com", "senha": "Marilene," },
-  { "nome": "Maria de", "email": "gordilho12@hotmail.com", "senha": "Maria," },
-  { "nome": "Ana Luiza", "email": "analuisa29@yahoo.com.br", "senha": "Ana," },
-  { "nome": "Maria Aparecida", "email": "dorinho.aidan@gmail.com", "senha": "Maria," },
-  { "nome": "Ana Carla", "email": "anacarlaccarvalho@hotmail.com", "senha": "Ana," },
-  { "nome": "Ana Paula", "email": "anapaula_meireles@hotmail.com", "senha": "Ana," },
-  { "nome": "Adriana Maria", "email": "adrianamariaalves_1995@hotmail.com", "senha": "Adriana," },
-  { "nome": "Rosângela Maria", "email": "rosangelalima753@hotmail.com", "senha": "Rosângela," },
-  { "nome": "Maria do", "email": "adelaidebetinha@hotmail.com", "senha": "Maria," },
-  { "nome": "Maria do", "email": "dinhaesteves07@hotmail.com", "senha": "Maria," },
-  { "nome": "Daniela Cristina", "email": "danielacristinalarangeira@gmail.com", "senha": "Daniela," },
-  { "nome": "Sandra Regina", "email": "sandrasa@outlook.com.br", "senha": "Sandra," },
-  { "nome": "Rute Maria", "email": "rutebomfim@hotmail.com", "senha": "Rute," },
-  { "nome": "Ana Carolina", "email": "carolinarecrutamento@hotmail.com", "senha": "Ana," },
-  { "nome": "Maria das", "email": "clecianacarvalho@live.com", "senha": "Maria," },
-  { "nome": "Adriana Maria", "email": "drimaria@bol.com.br", "senha": "Adriana," },
-  { "nome": "Maria das", "email": "marideusacristina@bol.com.br", "senha": "Maria," },
-  { "nome": "Maria de", "email": "marluciamoura14@gmail.com", "senha": "Maria," },
-  { "nome": "Maria Eduarda", "email": "mariaeduardam@hotmail.com", "senha": "Maria," },
-  { "nome": "Ana Paula", "email": "anapaula.lina@outlook.com", "senha": "Ana," },
-  { "nome": "Ana Paula", "email": "anapaula.lina@outlook.com", "senha": "Ana," },
-  { "nome": "Ana Cristina", "email": "anacrisalbuquerquemachado@gmail.com", "senha": "Ana," },
-  { "nome": "Maria do Rosário", "email": "mariarfreire62@gmail.com", "senha": "Maria" },
-  { "nome": "Regina Dias de goes", "email": "reginagoes03@gmail.com", "senha": "Regina" },
-  { "nome": "Márcia da Silva Barbosa", "email": "marciadasilvabarbosa162@gmail.com", "senha": "123" },
-  { "nome": "Isolete Bárbara", "email": "isaweiss51@gmail.com", "senha": "Isolete" }
-        ];
+    // Função para mostrar o modal de login
+    function mostrarModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = "block";
+    }
 
-        var usuarioLogado = false;
+    // Função para verificar credenciais
+    function verificarCredenciais() {
+        var nome = document.getElementById('email').value;
+        var senha = document.getElementById('senha').value;
+        var nomeSemNumeros = /^[^\d]+$/;  // Expressão regular para verificar se o nome contém números
 
-        function mostrarModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = "block";
+        if (!nomeSemNumeros.test(nome)) {
+            // Se o nome contém números, exibe erro
+            document.getElementById('error-message').textContent = "O nome de usuário não pode conter números.";
+            document.getElementById('error-message').style.display = "block";
+            return false;
+        } else if (senha === senhaCorreta && nome !== "") {
+            // Fechar o teclado após submeter
+            document.activeElement.blur();
+            
+            fecharModal();
+            exibirUserInfo(nome);
+            return false;  // Impede o envio do formulário e mantém a página
+        } else {
+            // Exibe mensagem de erro
+            document.getElementById('error-message').textContent = "Nome de usuário ou senha incorretos.";
+            document.getElementById('error-message').style.display = "block";
+            return false;  // Impede o envio do formulário
         }
+    }
 
-        function fecharModal() {
-            var email = document.getElementById('email').value;
-            var senha = document.getElementById('senha').value;
+    // Função para fechar o modal
+    function fecharModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
+        document.getElementById('error-message').style.display = "none";  // Oculta a mensagem de erro
+    }
 
-            var usuarioEncontrado = usuarios.find(function(usuario) {
-                return usuario.email === email && usuario.senha === senha;
-            });
+    // Função para exibir as informações do usuário logado
+    function exibirUserInfo(nome) {
+        var userInfo = document.getElementById('user-info');
+        var userName = document.getElementById('user-name');
+        userName.textContent = nome;
+        userInfo.style.display = "flex";
+    }
 
-            var errorMessage = document.getElementById('error-message'); // Movido para fora do bloco if/else
+    // Função para fazer logout
+    function logout() {
+        var userInfo = document.getElementById('user-info');
+        userInfo.style.display = "none";
+        mostrarModal();
+    }
 
-            if (usuarioEncontrado) {
-                var modal = document.getElementById('myModal');
-                modal.style.display = "none";
-                errorMessage.style.display = "none"; // Esconder a mensagem de erro
-            } else {
-                errorMessage.textContent = "Email ou senha incorretos. Tente novamente.";
-                errorMessage.style.display = "block";
-            }
-        }
+    // Função para mostrar páginas
+    function mostrarPagina(pagina) {
+        document.getElementById('content-frame').src = pagina;
+    }
 
-        function verificarCredenciais() {
-            var email = document.getElementById('email').value;
-            var senha = document.getElementById('senha').value;
-
-            var usuarioEncontrado = usuarios.find(function(usuario) {
-                return usuario.email === email && usuario.senha === senha;
-            });
-
-            if (usuarioEncontrado) {
-                usuarioLogado = true;
-                exibirUserInfo(usuarioEncontrado.nome);
-                return false;
-            } else {
-                var errorMessage = document.getElementById('error-message');
-                errorMessage.textContent = "Email ou senha incorretos. Tente novamente.";
-                errorMessage.style.display = "block";
-                return false;
-            }
-        }
-
-        function exibirUserInfo(nome) {
-            var userInfo = document.getElementById('user-info');
-            var userName = document.getElementById('user-name');
-            userName.textContent = nome;
-            userInfo.style.display = "flex";
-        }
-
-        function logout() {
-            usuarioLogado = false;
-            var userInfo = document.getElementById('user-info');
-            userInfo.style.display = "none";
-            mostrarModal();
-        }
-
-        window.onload = function() {
-            mostrarModal();
-        };
-
-        function mostrarPagina(pagina) {
-            document.getElementById('content-frame').src = pagina;
-        }
+    window.onload = function() {
+        mostrarModal();
+    };
     </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + "/ws";
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			console.log('Live reload enabled.');
+		})();
+	}
+	// ]]>
+</script>
 </body>
 </html>
-<script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-1DFMKE452Y"
-></script>
-<script>
-  window.dataLayer = window.dataLayer || []
-  function gtag() {
-    dataLayer.push(arguments)
-  }
-  gtag('js', new Date())
-
-  gtag('config', 'G-1DFMKE452Y')
-</script>
